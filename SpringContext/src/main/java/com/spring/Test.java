@@ -8,6 +8,24 @@ public class Test {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		ApplicationContext container = new ClassPathXmlApplicationContext("beans.xml");
+		
+//		Example for the List,Set and Map in bean
+//		Employee employee = container.getBean("emp", Employee.class);
+//		System.out.println(employee);
+		Product product = container.getBean("product", Product.class);
+		System.out.println(product);
+		
+	}
+	public static void users(ApplicationContext container) {
+		User user = container.getBean("user",User.class);
+		System.out.println(user);
+		
+		Address address = container.getBean("address",Address.class);
+		System.out.println(address); 
+	}
+	
+	public static void students(ApplicationContext container) {
+		
 		Student student = container.getBean("st", Student.class);
 		
 		System.out.println(student);
@@ -18,5 +36,4 @@ public class Test {
 		Student student3 = container.getBean("st3", Student.class);
 		System.out.println(student3);
 	}
-
 }
