@@ -1,11 +1,30 @@
 package com.multipleclasses;
 
 import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 
 @Component
 @Primary
+@Scope("prototype")
 public class Airtel implements Sim{
+
+	@PostConstruct
+	public void init() {
+		
+		System.out.println("Data seeding from Airtel...");
+	}
+	public Airtel() {
+		System.out.println("Airtel objecte created...");
+	}
+	
+	@PreDestroy
+	public void destroy() {
+		System.out.println("Destroy called...");
+	}
 
 	@Override
 	public void call() {
