@@ -1,5 +1,6 @@
 package com;
 
+import org.hibernate.Session;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -11,7 +12,23 @@ public class Application {
 		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 		StudentDAO studentDAO = context.getBean(StudentDAO.class, "studentDAO");
 		
-		Student st = new Student("Fayaz", 40);
-		studentDAO.saveStudent(st);
+//		student data added to database
+		
+//		Student st = new Student("Fayaz", 40);
+//		studentDAO.saveStudent(st);
+
+//		student data fetch from the database
+//		Student student = studentDAO.getStudent(1);
+//		System.out.println(student);
+		
+		
+//		student data updated..
+//		Student student = studentDAO.getStudent(1);
+//		student.setMarks(50);
+//		studentDAO.updateStudent(student);
+		
+//		student data deleted..
+		Student student = studentDAO.getStudent(1);
+		studentDAO.deleteStudent(student);
 	}
 }

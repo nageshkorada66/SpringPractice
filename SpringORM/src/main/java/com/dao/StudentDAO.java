@@ -17,7 +17,31 @@ public class StudentDAO {
 	SessionFactory sessionFactory;
 
 	public void saveStudent(Student student) {
-		Session session = sessionFactory.getCurrentSession();
+		Session session = getSession();
 		session.persist(student);
 	}
+	
+	public Student getStudent(int id) {
+		Session session = getSession();
+		Student student = session.find(Student.class,id);
+		return student;
+	}
+	
+	public void updateStudent(Student student) {
+		Session session = getSession();
+		session.merge(student);
+		System.out.println("updated the "+ student);
+	}
+	
+	public void deleteStudent(Student st) {
+		Session session = getSession();
+		session.remove(st);
+		System.out.println("User deleted..");
+	}
+	
+	public Session getSession() {
+		Session session = sessionFactory.getCurrentSession();
+		return session;
+	}
+
 }
