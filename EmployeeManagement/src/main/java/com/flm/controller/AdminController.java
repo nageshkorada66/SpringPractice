@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.flm.model.Admin;
 import com.flm.service.AdminService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -26,7 +27,13 @@ public class AdminController {
 		String userName = request.getParameter("username");
 		String password = request.getParameter("password");
 		
-		return "redirect:/flm/employees";
+		Admin admin = adminService.loginAdmin(userName, password);
+		if(admin != null) {
+			return "redirect:/flm/employees";
+		}else {
+			return "redirect:/";
+		}
+		
 	}
 	
 	@GetMapping("/signup")
@@ -35,13 +42,13 @@ public class AdminController {
 	}
 
 	@PostMapping("/signup")
-	@ResponseBody
+	
 	public String signup(HttpServletRequest request) {
 		String userName = request.getParameter("username");
 		String password = request.getParameter("password");
 		
 		adminService.signupAdmin(userName, password);
 		
-		return "Succesfully created";
+		return "redirect:/";
 	}
 }
