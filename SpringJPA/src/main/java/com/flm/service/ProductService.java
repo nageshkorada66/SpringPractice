@@ -50,4 +50,12 @@ public class ProductService {
 		Product product = productRepository.getProductByName("AC");
 		return product;
 	}
+	
+	public Product getProductByPrice(int price) {
+		return productRepository.findByPrice(price);
+	}
+	
+	public List<Product> getProductByPriceGreaterThan(int price) {
+		return productRepository.findByPriceGreaterThan(price);
+	}
 }
